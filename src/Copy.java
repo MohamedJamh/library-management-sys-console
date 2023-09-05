@@ -1,13 +1,13 @@
-public class copy {
+public class Copy {
     private int id;
     private String status = "available";
-    private int bookIsbn;
+    private String bookIsbn;
     private String reservedByReaderCin;
 
 
-    public copy(int id, String status) {
+    public Copy(int id, String bookIsbn) {
         this.id = id;
-        this.status = status;
+        this.bookIsbn = bookIsbn;
     }
 
 
@@ -34,11 +34,26 @@ public class copy {
         this.reservedByReaderCin = reservedByReaderCin;
     }
 
-    public void setBookIsbn(int bookIsbn) {
+    public void setBookIsbn(String bookIsbn) {
         this.bookIsbn = bookIsbn;
     }
-    public int getBookIsbn() {
+    public String getBookIsbn() {
         return bookIsbn;
     }
+    public void isBorrowed(){
+        status = "borrowed";
+    }
+    public void returned(){
+        status = "available";
+    }
 
+    @Override
+    public String toString() {
+        return "Copy{" +
+                "id=" + id +
+                ", status='" + status + '\'' +
+                ", bookIsbn='" + bookIsbn + '\'' +
+                ", reservedByReaderCin='" + reservedByReaderCin + '\'' +
+                '}';
+    }
 }

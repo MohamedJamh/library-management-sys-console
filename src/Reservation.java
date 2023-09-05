@@ -1,15 +1,14 @@
-import java.util.Date;
 
 public class Reservation {
     private int id;
     private int bookCopyId;
-    private Date date;
+    private String date;
     private String status = "borrowed";
 
-    public Reservation(int id, Date date, String status) {
+    public Reservation(int id, int bookCopyId, String date) {
         this.id = id;
         this.date = date;
-        this.status = status;
+        this.bookCopyId = bookCopyId;
     }
 
 
@@ -20,10 +19,10 @@ public class Reservation {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -39,5 +38,15 @@ public class Reservation {
     }
     public void setBookCopyId(int bookCopyId) {
         this.bookCopyId = bookCopyId;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", bookCopyId=" + bookCopyId +
+                ", date='" + date + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

@@ -48,24 +48,35 @@ public class Book {
         return available;
     }
 
-    public void setAvailable(int available) {
-        this.available = available;
+    public void setAvailable(int availableCopies, String from) {
+        available += availableCopies;
+        if (from.equals("lost")) {
+            lost -= availableCopies;
+        } else {
+            borrowed -= availableCopies;
+        }
     }
 
     public int getBorrowed() {
         return borrowed;
     }
 
-    public void setBorrowed(int borrowed) {
-        this.borrowed = borrowed;
+    public void setBorrowed(int borrowedCopies) {
+        borrowed += borrowedCopies;
+        available -= borrowedCopies;
     }
 
     public int getLost() {
         return lost;
     }
 
-    public void setLost(int lost) {
-        this.lost = lost;
+    public void setLost(int lostCopies, String from) {
+        lost += lostCopies;
+        if (from.equals("available")) {
+            available -= lostCopies;
+        } else {
+            borrowed -= lostCopies;
+        }
     }
 
     public float getPrice() {
@@ -82,5 +93,19 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", quantity=" + quantity +
+                ", available=" + available +
+                ", borrowed=" + borrowed +
+                ", lost=" + lost +
+                ", price=" + price +
+                ", author='" + author + '\'' +
+                '}';
     }
 }
