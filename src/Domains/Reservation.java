@@ -1,3 +1,4 @@
+package Domains;
 
 public class Reservation {
     private int id;
@@ -42,7 +43,7 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Reservation{" +
+        return "Domain.Reservation{" +
                 "id=" + id +
                 ", bookCopyId=" + copy.getId() +
                 ", date='" + date + '\'' +

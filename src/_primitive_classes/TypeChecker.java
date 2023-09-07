@@ -1,4 +1,4 @@
-package primitive_classes;
+package _primitive_classes;
 
 public class TypeChecker {
     public static <X> String getType(X var){

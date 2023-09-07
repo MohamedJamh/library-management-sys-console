@@ -1,3 +1,5 @@
+package Domains;
+
 import java.util.ArrayList;
 
 public class  Person {
@@ -84,7 +86,7 @@ public class  Person {
 
     @Override
     public String toString() {
-        return "Librarian{" +
+        return "Domain.Librarian{" +
                 "cin='" + cin + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

@@ -1,8 +1,10 @@
+package Repositories;
+
 import java.sql.*;
 import java.util.ArrayList;
-import primitive_classes.TypeChecker;
+import _primitive_classes.TypeChecker;
 
-public class Db {
+public class _Db {
     private static final String driver = "com.mysql.cj.jdbc.Driver";
     private static final String url = "jdbc:mysql://localhost:3306/ycminisas";
     private static final String username = "root";
@@ -10,7 +12,7 @@ public class Db {
     public static Connection connection;
 
 
-    public Db() {
+    public _Db() {
         try {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, username, password);
@@ -19,7 +21,7 @@ public class Db {
         }
     }
     public static Object queryDatabase(String sql , String returnType){
-        try {
+        try{
             Statement statement = connection.createStatement();
             switch (returnType){
                 case "ResultSet" -> {

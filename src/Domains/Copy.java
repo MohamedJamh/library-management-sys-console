@@ -1,4 +1,4 @@
-import javax.sound.sampled.Mixer;
+package Domains;
 
 public class Copy {
     private int id;
@@ -51,7 +51,7 @@ public class Copy {
 
     @Override
     public String toString() {
-        String copy = "Copy {" +
+        String copy = "Domain.Copy {" +
                 "id=" + id +
                 ", status='" + status + '\'' +
                 ", bookIsbn='" + book.getIsbn() + '\'' ;

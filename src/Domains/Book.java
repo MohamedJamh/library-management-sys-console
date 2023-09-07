@@ -1,3 +1,5 @@
+package Domains;
+
 public class Book {
     private String isbn;
     private String title;
@@ -97,7 +99,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "Domain.Book{" +
                 "isbn='" + isbn + '\'' +
                 ", title='" + title + '\'' +
                 ", quantity=" + quantity +
