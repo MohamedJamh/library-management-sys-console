@@ -1,13 +1,15 @@
+import javax.sound.sampled.Mixer;
+
 public class Copy {
     private int id;
     private String status = "available";
-    private String bookIsbn;
-    private String reservedByReaderCin;
+    private Book book;
+    private Person reservedByReader;
 
 
-    public Copy(int id, String bookIsbn) {
+    public Copy(int id, Book book) {
         this.id = id;
-        this.bookIsbn = bookIsbn;
+        this.book = book;
     }
 
 
@@ -27,18 +29,18 @@ public class Copy {
     }
 
 
-    public String getReservedByReaderCin() {
-        return reservedByReaderCin;
+    public Person getReservedByReader() {
+        return reservedByReader;
     }
-    public void setReservedByReaderCin(String reservedByReaderCin) {
-        this.reservedByReaderCin = reservedByReaderCin;
+    public void setReservedByReaderCin(Person reservedByReader) {
+        this.reservedByReader = reservedByReader;
     }
 
-    public void setBookIsbn(String bookIsbn) {
-        this.bookIsbn = bookIsbn;
+    public void setBook(Book book) {
+        this.book = book;
     }
-    public String getBookIsbn() {
-        return bookIsbn;
+    public Book getBook() {
+        return book;
     }
     public void isBorrowed(){
         status = "borrowed";
@@ -49,11 +51,11 @@ public class Copy {
 
     @Override
     public String toString() {
-        return "Copy{" +
+        String copy = "Copy {" +
                 "id=" + id +
                 ", status='" + status + '\'' +
-                ", bookIsbn='" + bookIsbn + '\'' +
-                ", reservedByReaderCin='" + reservedByReaderCin + '\'' +
-                '}';
+                ", bookIsbn='" + book.getIsbn() + '\'' ;
+        if( reservedByReader != null ){ copy += ", reservedByReaderCin='" + reservedByReader.getCin() + '\'' ; }
+        return copy + '}';
     }
 }

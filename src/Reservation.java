@@ -1,14 +1,14 @@
 
 public class Reservation {
     private int id;
-    private int bookCopyId;
+    private Copy copy;
     private String date;
     private String status = "borrowed";
 
-    public Reservation(int id, int bookCopyId, String date) {
+    public Reservation(int id, Copy copy, String date) {
         this.id = id;
         this.date = date;
-        this.bookCopyId = bookCopyId;
+        this.copy = copy;
     }
 
 
@@ -33,18 +33,18 @@ public class Reservation {
         this.status = status;
     }
 
-    public int getBookCopyId() {
-        return bookCopyId;
+    public Copy getBookCopy() {
+        return copy;
     }
-    public void setBookCopyId(int bookCopyId) {
-        this.bookCopyId = bookCopyId;
+    public void setBookCopy(Copy copy) {
+        this.copy = copy;
     }
 
     @Override
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", bookCopyId=" + bookCopyId +
+                ", bookCopyId=" + copy.getId() +
                 ", date='" + date + '\'' +
                 ", status='" + status + '\'' +
                 '}';
