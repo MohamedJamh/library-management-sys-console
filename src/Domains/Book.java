@@ -5,19 +5,17 @@ public class Book {
     private String title;
     private int quantity;
     private int available;
-    private int borrowed;
-    private int lost;
+    private int borrowed = 0;
+    private int lost = 0;
     private float price;
     private String author;
 
 
-    public Book(String isbn, String title, int quantity, int available, int borrowed, int lost, float price, String author) {
+    public Book(String isbn, String title, int quantity, float price, String author) {
         this.isbn = isbn;
         this.title = title;
         this.quantity = quantity;
-        this.available = available;
-        this.borrowed = borrowed;
-        this.lost = lost;
+        this.available = this.quantity;
         this.price = price;
         this.author = author;
     }
@@ -50,36 +48,40 @@ public class Book {
         return available;
     }
 
-    public void setAvailable(int availableCopies, String from) {
-        available += availableCopies;
-        if (from.equals("lost")) {
-            lost -= availableCopies;
-        } else {
-            borrowed -= availableCopies;
-        }
-    }
+//    TODO: delete setavailable setter
+//    public void setAvailable(int availableCopies, String from) {
+//        available += availableCopies;
+//        if (from.equals("lost")) {
+//            lost -= availableCopies;
+//        } else {
+//            borrowed -= availableCopies;
+//        }
+//    }
 
     public int getBorrowed() {
         return borrowed;
     }
+//    TODO: delete setBorrowed setter
 
-    public void setBorrowed(int borrowedCopies) {
-        borrowed += borrowedCopies;
-        available -= borrowedCopies;
-    }
+//    public void setBorrowed(int borrowedCopies) {
+//        borrowed += borrowedCopies;
+//        available -= borrowedCopies;
+//    }
 
     public int getLost() {
         return lost;
     }
 
-    public void setLost(int lostCopies, String from) {
-        lost += lostCopies;
-        if (from.equals("available")) {
-            available -= lostCopies;
-        } else {
-            borrowed -= lostCopies;
-        }
-    }
+//    TODO: delete setLost setter
+
+//    public void setLost(int lostCopies, String from) {
+//        lost += lostCopies;
+//        if (from.equals("available")) {
+//            available -= lostCopies;
+//        } else {
+//            borrowed -= lostCopies;
+//        }
+//    }
 
     public float getPrice() {
         return price;
@@ -96,7 +98,6 @@ public class Book {
     public void setAuthor(String author) {
         this.author = author;
     }
-
     @Override
     public String toString() {
         return "Domain.Book{" +
