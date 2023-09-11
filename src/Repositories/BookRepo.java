@@ -40,8 +40,7 @@ public class BookRepo {
                 parameters,
                 "Int"
         );
-        if(affectedRow != 0) return true;
-        return false;
+        return affectedRow != 0;
     }
     public static int updateBook(ArrayList<Object> parameters) throws SQLException{
         return (int) _Db.queryDatabase("update books set title = ?, author = ?, price = ? where isbn = ?",

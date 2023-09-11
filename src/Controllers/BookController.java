@@ -1,7 +1,10 @@
 package Controllers;
 
 import Domains.Book;
+import Domains.Person;
+import Domains.Reservation;
 import Services.BookService;
+import Services.UserService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -146,8 +149,13 @@ public class BookController {
         ArrayList<Book> bookArray = BookService.searchForBook("isbn",isbn);
         if( bookArray != null ){
             if(bookArray.get(0).getAvailable() != 0){
-                
-            }else System.out.println("Book quantity has been expired");
+                System.out.println("User's cin : ");
+                String cin = myScanner.nextLine();
+                Person user = UserService.getUser(cin);
+                if(user == null) user = UserController.addUser(cin);
+                ArrayList<Object> reservation = new ArrayList<>();
+//                reservation.add()
+            }else System.out.println("Book copies has been expired");
         }else System.out.println("Book not found");
 
     }
