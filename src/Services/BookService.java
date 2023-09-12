@@ -6,7 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Domains.Book;
+import Domains.Copy;
+import Domains.Person;
+import Domains.Reservation;
 import Repositories.BookRepo;
+import Repositories.ReservationRepo;
 import Repositories._Db;
 
 public class BookService {
@@ -19,6 +23,9 @@ public class BookService {
                             (String) book.get(0),
                             (String) book.get(1),
                             (int) book.get(3),
+                            (int) book.get(3), // available = quantity
+                            0,
+                            0,
                             (float) book.get(4),
                             (String) book.get(5)
                     );
@@ -44,6 +51,9 @@ public class BookService {
                             set.getString("isbn"),
                             set.getString("title"),
                             set.getInt("quantity"),
+                            set.getInt("available"),
+                            set.getInt("borrowed"),
+                            set.getInt("lost"),
                             set.getFloat("price"),
                             set.getString("author")
                     ));
@@ -64,6 +74,9 @@ public class BookService {
                         set.getString("isbn"),
                         set.getString("title"),
                         set.getInt("quantity"),
+                        set.getInt("available"),
+                        set.getInt("borrowed"),
+                        set.getInt("lost"),
                         set.getFloat("price"),
                         set.getString("author")
                 ));
@@ -86,5 +99,23 @@ public class BookService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public static Reservation borrowBook(Book book, Copy copy, Person user){
+        try {
+            if(ReservationRepo.addReservation(copy.getId(),user.getCin()) != 0){
+                ResultSet reservationSet = ReservationRepo.getLastReservation();
+                reservationSet.next();
+                return new Reservation(
+                    reservationSet.getInt("id"),
+                        copy,
+                        reservationSet.getString("date")
+                );
+            };
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }

@@ -1,9 +1,12 @@
 package Controllers;
 
 import Domains.Book;
+import Domains.Copy;
 import Domains.Person;
 import Domains.Reservation;
+import Repositories.ReservationRepo;
 import Services.BookService;
+import Services.CopyService;
 import Services.UserService;
 
 import java.sql.SQLException;
@@ -89,8 +92,7 @@ public class BookController {
             case "3" -> bookArray = BookService.searchForBook("author", value);
             default -> HomeController.menu();
         }
-        System.out.println(bookArray.size());
-        if(bookArray.isEmpty()) System.out.println("Book not found");
+        if(bookArray == null) System.out.println("Book not found");
         else BookController.showBooks(bookArray);
         HomeController.quit();
     }
@@ -148,13 +150,22 @@ public class BookController {
         String isbn = myScanner.nextLine();
         ArrayList<Book> bookArray = BookService.searchForBook("isbn",isbn);
         if( bookArray != null ){
-            if(bookArray.get(0).getAvailable() != 0){
+            if(bookArray.get(0).getAvailable() > 0){
                 System.out.println("User's cin : ");
                 String cin = myScanner.nextLine();
                 Person user = UserService.getUser(cin);
                 if(user == null) user = UserController.addUser(cin);
-                ArrayList<Object> reservation = new ArrayList<>();
-//                reservation.add()
+                Copy copy = CopyService.getCopy("bookIsbn",isbn);
+
+                Reservation reservation =  BookService.borrowBook(bookArray.get(0), copy, user);
+                if (reservation != null){
+                    copy.setReservedByReaderCin(user);
+                    user.setReservations(reservation);
+                    System.out.println("-- Info : Copy Has been reserved .");
+                    RerservationController.showReceipt(reservation);
+                    HomeController.quit();
+                }
+                System.exit(1);
             }else System.out.println("Book copies has been expired");
         }else System.out.println("Book not found");
 

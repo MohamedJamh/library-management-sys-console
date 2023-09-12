@@ -14,12 +14,12 @@ public class UserService {
                 ResultSet set = UserRepo.getUser(cin);
                 set.next();
                 return new Person(
-                        set.getString(0),
                         set.getString(1),
                         set.getString(2),
                         set.getString(3),
-                        set.getBoolean(4),
-                        set.getBoolean(5)
+                        set.getString(4),
+                        set.getBoolean(5),
+                        set.getBoolean(6)
                 );
             }
             return null;

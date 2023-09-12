@@ -6,10 +6,10 @@ public class  Person {
     protected String cin;
     protected String firstName;
     protected String lastName;
-    private String phone;
-    private boolean banned = false;
-    private boolean isAdmin = false;
-    private String password;
+    protected String phone;
+    protected boolean banned = false;
+    protected boolean isAdmin = false;
+    protected String password;
     protected ArrayList<Reservation> reservations = new ArrayList<>();
 
     public Person(String cin,String firstName, String lastName, String phone, boolean banned, boolean isAdmin){

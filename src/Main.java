@@ -13,7 +13,6 @@ public class Main {
     public static void main(String[] args) {
         _Db mysql = new _Db();
         AuthenticaionController.login();
-
     }
 }
 

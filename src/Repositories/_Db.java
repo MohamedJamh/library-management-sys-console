@@ -17,7 +17,8 @@ public class _Db {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error 500");
+            System.exit(1);
         }
     }
     public static Object queryDatabase(String sql , String returnType){
