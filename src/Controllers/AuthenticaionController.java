@@ -9,11 +9,11 @@ public class AuthenticaionController {
 
         System.out.println("---------- LOGIN ----------");
         System.out.println("Enter your username ( hint: firstname ) : ");
-        String username = myScanner.nextLine();
-//        String username = "aaa";
+//        String username = myScanner.nextLine();
+        String username = "aaa";
         System.out.println("Enter your password : ");
-        String password = myScanner.nextLine();
-//        String password = "aaa";
+//        String password = myScanner.nextLine();
+        String password = "aaa";
 
         AuthenticationService.login(username, password);
     }

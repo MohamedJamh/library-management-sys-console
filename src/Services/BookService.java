@@ -108,14 +108,35 @@ public class BookService {
                 return new Reservation(
                     reservationSet.getInt("id"),
                         copy,
-                        reservationSet.getString("date")
+                        reservationSet.getString("date"),
+                        "Borrowed",
+                        reservationSet.getString("return_date")
                 );
             };
             return null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    public static boolean returnBook(Reservation reservation){
+        try{
+            return ReservationRepo.returnBook(reservation.getId());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
+
+    public static boolean deleteBook(String isbn){
+        try{
+            if(BookRepo.isExist(isbn)){
+                return BookRepo.deleteBook(isbn);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
 }

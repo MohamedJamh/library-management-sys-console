@@ -21,8 +21,7 @@ public class _Db {
             System.exit(1);
         }
     }
-    public static Object queryDatabase(String sql , String returnType){
-        try{
+    public static Object queryDatabase(String sql , String returnType) throws SQLException{
             Statement statement = connection.createStatement();
             switch (returnType){
                 case "ResultSet" -> {
@@ -36,9 +35,6 @@ public class _Db {
                 }
             }
             return new Object();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
     public static Object queryDatabase(String sql, ArrayList<Object> arrayParameter, String returnType ){
         try {

@@ -4,11 +4,13 @@ import Domains.Book;
 import Domains.Copy;
 import Domains.Person;
 import Domains.Reservation;
-import Repositories.ReservationRepo;
 import Services.BookService;
 import Services.CopyService;
+import Services.ReservationService;
 import Services.UserService;
+import com.mysql.cj.protocol.Resultset;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -22,7 +24,7 @@ public class BookController {
         System.out.println("|   ISBN     |            Title               | Quantity | Available | Borrowed | Lost |  Price  |      Author       |");
         System.out.println("+------------+--------------------------------+----------+-----------+----------+------+---------+-------------------+");
         for(Book book: books){
-            System.out.printf("| %s |           %s               |    %d    |     %d     |    %d     |  %d   | %f  |     %s      |%n",
+            System.out.printf("| %s |           %s               |    %d    |     %d     |    %d     |  %d   | %.2f  |     %s      |%n",
                     book.getIsbn(),
                     book.getTitle(),
                     book.getQuantity(),
@@ -162,14 +164,56 @@ public class BookController {
                     copy.setReservedByReaderCin(user);
                     user.setReservations(reservation);
                     System.out.println("-- Info : Copy Has been reserved .");
-                    RerservationController.showReceipt(reservation);
+                    ReservationController.showReceipt(reservation);
                     HomeController.quit();
                 }
-                System.exit(1);
             }else System.out.println("Book copies has been expired");
         }else System.out.println("Book not found");
 
     }
 
+    public static void returnBook(){
+        System.out.println("---------- RETURNING A BOOK ----------");
+        System.out.println("insert reservation reference : ");
+        String reservationReference;
+        do {
+            reservationReference= myScanner.nextLine();
+            if(!reservationReference.isEmpty()) break;
+            else System.out.println("Invalid Input");
+        }while (true);
+        Reservation reservation = ReservationService.getReservation(reservationReference);
+        if(reservation != null){
+            if(BookService.returnBook(reservation)) System.out.println("Book Returned Successfully");
+            else System.out.println("Book hasn't been Returned");
+        }else System.out.println("Reservation does not exist");
+        HomeController.quit();
+    }
 
+    public static void listAllBorrowedBooks(){
+        System.out.println("---------- BORROWED BOOKS ----------");
+        try{
+            ResultSet set = CopyService.listAllBorrowedCopies();
+            if(set.next()){
+                CopyController.showBorrowedCopies(set);
+            }else System.out.println("There is no borrowed books");
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        HomeController.quit();
+    }
+
+    public static void deleteBook(){
+        System.out.println("---------- DELETE BOOK ----------");
+        String isbn;
+        do {
+            isbn = myScanner.nextLine();
+            if(!isbn.isEmpty()) break;
+            System.out.println("Invalid Input");
+        }while (true);
+        if(BookService.deleteBook(isbn)) System.out.println("Book has been deleted successfully");
+    }
+
+    public static void statistics(){
+
+    }
 }

@@ -52,4 +52,12 @@ public class BookRepo {
                 "Select * from books",
                 "ResultSet");
     }
+
+    public static boolean deleteBook(String isbn) throws SQLException{
+        return (boolean) _Db.queryDatabase(
+                String.format("delete from books where isbn like '%s';", isbn),
+                "Bool"
+        );
+    }
+
 }

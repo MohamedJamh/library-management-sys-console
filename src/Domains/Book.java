@@ -15,7 +15,9 @@ public class Book {
         this.isbn = isbn;
         this.title = title;
         this.quantity = quantity;
-        this.available = this.quantity;
+        this.available = available;
+        this.borrowed = borrowed;
+        this.lost = lost;
         this.price = price;
         this.author = author;
     }

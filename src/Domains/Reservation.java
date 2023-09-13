@@ -4,12 +4,16 @@ public class Reservation {
     private int id;
     private Copy copy;
     private String date;
-    private String status = "borrowed";
+    private String status ;
 
-    public Reservation(int id, Copy copy, String date) {
+    private final String returnDate;
+
+    public Reservation(int id, Copy copy, String date,String status ,String returnDate) {
         this.id = id;
         this.date = date;
         this.copy = copy;
+        this.status = status;
+        this.returnDate = returnDate;
     }
 
 
@@ -39,6 +43,10 @@ public class Reservation {
     }
     public void setBookCopy(Copy copy) {
         this.copy = copy;
+    }
+
+    public String getReturnDate() {
+        return returnDate;
     }
 
     @Override

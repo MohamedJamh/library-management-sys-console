@@ -19,24 +19,22 @@ public class HomeController {
                 System.out.println("5 - Add new Books: 5");
                 System.out.println("6 - Update Books: 6");
                 System.out.println("7 - Delete Books: 7");
-                System.out.println("8 - List a Book's Details: 8");
-                System.out.println("9 - List All Borrowed Books: 9");
-                System.out.println("10 - Generate Statistics: 10");
+                System.out.println("8 - List All Borrowed Books: 9");
+                System.out.println("9 - Generate Statistics: 10");
             }
-            System.out.println("11 - Exit: key press");
+            System.out.println("10 - Exit: key press");
             System.out.println("Please Enter Your Choice : ");
             choice = myScanner.nextLine();
             switch (choice){
                 case "1" -> BookController.listBooks();
                 case "2" -> BookController.searchBook();
                 case "3" -> BookController.borrowBook();
-                case "4" -> System.out.println("tz");
+                case "4" -> BookController.returnBook();
                 case "5" -> BookController.addBook();
                 case "6" -> BookController.updateBook();
-                case "7" -> System.out.println("t");
-                case "8" -> System.out.println("ts");
-                case "9" -> System.out.println("ts");
-                case "10" -> System.out.println("ts");
+                case "7" -> BookController.deleteBook();
+                case "8" -> BookController.listAllBorrowedBooks();
+                case "9" -> HomeController.quit();
                 default -> System.exit(0);
             }
         }while (true);
