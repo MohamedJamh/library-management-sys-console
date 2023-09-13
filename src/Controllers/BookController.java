@@ -214,6 +214,11 @@ public class BookController {
     }
 
     public static void statistics(){
-
+        System.out.println("+----------------- STATISTICS ------------------+");
+        ArrayList<Integer> stats = BookService.getStatistics();
+        System.out.println("+--------------+--------------------------------+");
+        System.out.printf("|   Users: %d   |            Books:  %d          |\n",stats.get(1),stats.get(0));
+        showBooks(BookService.listBooks());
+        HomeController.quit();
     }
 }

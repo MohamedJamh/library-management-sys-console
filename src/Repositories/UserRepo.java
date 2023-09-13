@@ -8,6 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserRepo {
+
+    public static int getCountUsers() throws SQLException{
+        ResultSet set = (ResultSet) _Db.queryDatabase("Select count(*) from users ","ResultSet");
+        set.next();
+        return set.getInt("count(*)");
+    }
     public static boolean isExist(String cin) throws SQLException {
         ArrayList<Object> parameters = new ArrayList<>();
         parameters.add(cin);

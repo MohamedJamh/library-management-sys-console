@@ -11,6 +11,7 @@ import Domains.Person;
 import Domains.Reservation;
 import Repositories.BookRepo;
 import Repositories.ReservationRepo;
+import Repositories.UserRepo;
 import Repositories._Db;
 
 public class BookService {
@@ -137,6 +138,18 @@ public class BookService {
             System.out.println(e.getMessage());
         }
         return false;
+    }
+
+
+    public static ArrayList<Integer> getStatistics(){
+        ArrayList<Integer> bookUserArray = new ArrayList<>();
+        try {
+            bookUserArray.add(BookRepo.getCountBooks());
+            bookUserArray.add(UserRepo.getCountUsers());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return bookUserArray;
     }
 
 }

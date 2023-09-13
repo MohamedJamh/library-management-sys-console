@@ -6,6 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BookRepo {
+    public static int getCountBooks() throws SQLException{
+        ResultSet set = (ResultSet) _Db.queryDatabase("Select count(*) from books ","ResultSet");
+        set.next();
+        return set.getInt("count(*)");
+    }
     public static boolean isExist(String isbn) throws SQLException {
         ArrayList<Object> parameters = new ArrayList<>();
         parameters.add(isbn);
@@ -59,5 +64,9 @@ public class BookRepo {
                 "Bool"
         );
     }
+
+//    public static ResultSet getBookStatics(){
+//
+//    }
 
 }

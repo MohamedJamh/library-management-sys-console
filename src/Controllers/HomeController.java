@@ -19,8 +19,8 @@ public class HomeController {
                 System.out.println("5 - Add new Books: 5");
                 System.out.println("6 - Update Books: 6");
                 System.out.println("7 - Delete Books: 7");
-                System.out.println("8 - List All Borrowed Books: 9");
-                System.out.println("9 - Generate Statistics: 10");
+                System.out.println("8 - List All Borrowed Books: 8");
+                System.out.println("9 - Generate Statistics: 9");
             }
             System.out.println("10 - Exit: key press");
             System.out.println("Please Enter Your Choice : ");
@@ -34,7 +34,7 @@ public class HomeController {
                 case "6" -> BookController.updateBook();
                 case "7" -> BookController.deleteBook();
                 case "8" -> BookController.listAllBorrowedBooks();
-                case "9" -> HomeController.quit();
+                case "9" -> BookController.statistics();
                 default -> System.exit(0);
             }
         }while (true);
