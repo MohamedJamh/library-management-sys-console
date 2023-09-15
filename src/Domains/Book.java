@@ -50,40 +50,17 @@ public class Book {
         return available;
     }
 
-//    TODO: delete setavailable setter
-//    public void setAvailable(int availableCopies, String from) {
-//        available += availableCopies;
-//        if (from.equals("lost")) {
-//            lost -= availableCopies;
-//        } else {
-//            borrowed -= availableCopies;
-//        }
-//    }
 
     public int getBorrowed() {
         return borrowed;
     }
-//    TODO: delete setBorrowed setter
 
-//    public void setBorrowed(int borrowedCopies) {
-//        borrowed += borrowedCopies;
-//        available -= borrowedCopies;
-//    }
 
     public int getLost() {
         return lost;
     }
 
-//    TODO: delete setLost setter
 
-//    public void setLost(int lostCopies, String from) {
-//        lost += lostCopies;
-//        if (from.equals("available")) {
-//            available -= lostCopies;
-//        } else {
-//            borrowed -= lostCopies;
-//        }
-//    }
 
     public float getPrice() {
         return price;
